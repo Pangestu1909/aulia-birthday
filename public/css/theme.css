@@ -1,0 +1,133 @@
+html,
+body {
+    background-color: var(--bg-body);
+    color: var(--text-primary);
+    transition:
+        background-color 0.2s ease,
+        color 0.2s ease;
+}
+
+.card,
+.modal-content,
+.dropdown-menu {
+    background-color: var(--bg-card);
+    color: var(--text-primary);
+    border-color: var(--border-color);
+    box-shadow: 0 4px 20px var(--shadow-color);
+}
+
+.navbar {
+    background-color: var(--bg-navbar) !important;
+    color: var(--text-primary);
+    border-color: var(--border-color);
+}
+
+.sidebar,
+.layout-menu,
+.menu-inner {
+    background-color: var(--bg-sidebar) !important;
+    color: var(--text-primary);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+label,
+span,
+td,
+th {
+    color: inherit;
+}
+
+.text-muted {
+    color: var(--text-secondary) !important;
+}
+
+.form-control,
+.form-select,
+textarea,
+input {
+    background-color: var(--bg-input) !important;
+    color: var(--text-primary) !important;
+    border-color: var(--border-color) !important;
+}
+
+.form-control::placeholder,
+textarea::placeholder,
+input::placeholder {
+    color: var(--text-secondary) !important;
+}
+
+.form-control:focus,
+.form-select:focus {
+    background-color: var(--bg-input) !important;
+    color: var(--text-primary) !important;
+    border-color: var(--primary-color) !important;
+}
+
+.table {
+    --bs-table-bg: var(--bg-card);
+    --bs-table-color: var(--text-primary);
+    --bs-table-border-color: var(--border-color);
+
+    color: var(--text-primary);
+    border-color: var(--border-color);
+}
+
+.table thead th {
+    background-color: var(--bg-table-header) !important;
+    color: var(--text-primary) !important;
+}
+
+.table tbody td {
+    background-color: var(--bg-card) !important;
+    color: var(--text-primary) !important;
+}
+
+.dropdown-item {
+    color: var(--text-primary);
+}
+
+.dropdown-item:hover {
+    background-color: var(--bg-table-header);
+    color: var(--text-primary);
+}
+
+.list-group-item {
+    background-color: var(--bg-card);
+    color: var(--text-primary);
+    border-color: var(--border-color);
+}
+
+.border,
+.border-top,
+.border-bottom,
+.border-start,
+.border-end {
+    border-color: var(--border-color) !important;
+}
+
+/* Tombol theme */
+.theme-toggle {
+    width: 42px;
+    height: 42px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid var(--border-color);
+    border-radius: 50%;
+    background-color: var(--bg-card);
+    color: var(--text-primary);
+    cursor: pointer;
+    font-size: 20px;
+    transition: 0.2s ease;
+}
+
+.theme-toggle:hover {
+    border-color: var(--primary-color);
+    transform: translateY(-1px);
+}
