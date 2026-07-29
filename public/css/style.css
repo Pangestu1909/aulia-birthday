@@ -161,7 +161,7 @@ button{ font-family:inherit; }
   left:21px;
 }
 .amplop__segel span{
-  position:relative;
+  position:center;
   z-index:2;
 
   font-family:var(--font-script);
