@@ -162,12 +162,12 @@ button{ font-family:inherit; }
 }
 .amplop__segel span {
   position: absolute;
-  top: 47%;
+  top: 50%;
   left: 50%;
   z-index: 2;
 
   font-family: var(--font-script);
-  font-size: 25px;
+  font-size: 13px;
   color: #F3E4CC;
   letter-spacing: .02em;
 
