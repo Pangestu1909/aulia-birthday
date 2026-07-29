@@ -1178,7 +1178,7 @@ body:not(.undangan-terbuka) .kolase-template {
 @keyframes sealPulse {
   0%,
   100% {
-    transform: scale(1);
+    transform: translate(-50%, -50%) scale(1);
 
     box-shadow:
       0 8px 16px rgba(72, 31, 36, 0.28),
@@ -1186,7 +1186,7 @@ body:not(.undangan-terbuka) .kolase-template {
   }
 
   50% {
-    transform: scale(1.06);
+    transform: translate(-50%, -50%) scale(1.06);
 
     box-shadow:
       0 12px 22px rgba(72, 31, 36, 0.22),
