@@ -160,16 +160,22 @@ button{ font-family:inherit; }
   top:0;
   left:21px;
 }
-.amplop__segel span{
-  position:center;
-  z-index:2;
+.amplop__segel span {
+  position: absolute;
+  top: 56%;
+  left: 50%;
+  z-index: 2;
 
-  font-family:var(--font-script);
-  font-size:20px;
-  color:#F3E4CC;
-  letter-spacing:.02em;
+  font-family: var(--font-script);
+  font-size: 13px;
+  color: #F3E4CC;
+  letter-spacing: .02em;
 
-  transform:rotate(45deg);
+  transform:
+    translate(-50%, -50%)
+    rotate(45deg);
+
+  white-space: nowrap;
 }
 .amplop__segel:hover{
   transform:
