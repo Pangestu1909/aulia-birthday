@@ -80,7 +80,7 @@ $kataKata = $config['kata_kata'] ?? [];
                 type="button"
                 aria-label="Buka amplop undangan"
             >
-                <span>Open</span>
+                <span>Love</span>
             </button>
 
         </div>
