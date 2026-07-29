@@ -106,18 +106,77 @@ button{ font-family:inherit; }
 
 /* segel lilin / tombol buka */
 .amplop__segel{
-  position:absolute; top:36%; left:50%; transform:translate(-50%,-50%);
-  width:56px; height:56px; border-radius:50%;
-  background:radial-gradient(circle at 35% 30%, #a04747, var(--maroon) 70%, var(--maroon-deep));
-  border:none; box-shadow:0 4px 8px rgba(0,0,0,0.35);
-  display:flex; align-items:center; justify-content:center;
+  position:absolute;
+  top:36%;
+  left:50%;
+
+  width:56px;
+  height:56px;
+
+  transform:
+    translate(-50%,-50%)
+    rotate(-45deg);
+
+  border:none;
+  border-radius:8px 0 8px 0;
+
+  background:var(--maroon);
+
+  box-shadow:
+    0 4px 8px rgba(0,0,0,0.35);
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
   z-index:5;
-  transition:transform .5s ease, opacity .5s ease;
+
+  transition:
+    transform .5s ease,
+    opacity .5s ease;
+}
+
+.amplop__segel::before,
+.amplop__segel::after{
+  content:"";
+
+  position:absolute;
+
+  width:56px;
+  height:56px;
+
+  border-radius:50%;
+  background:var(--maroon);
+
+  z-index:-1;
+}
+
+.amplop__segel::before{
+  top:-28px;
+  left:0;
+}
+
+.amplop__segel::after{
+  top:0;
+  left:28px;
 }
 .amplop__segel span{
-  font-family:var(--font-script); font-size:16px; color:#F3E4CC; letter-spacing:.02em;
+  position:relative;
+  z-index:2;
+
+  font-family:var(--font-script);
+  font-size:16px;
+  color:#F3E4CC;
+  letter-spacing:.02em;
+
+  transform:rotate(45deg);
 }
-.amplop__segel:hover{ transform:translate(-50%,-50%) scale(1.06); }
+.amplop__segel:hover{
+  transform:
+    translate(-50%,-50%)
+    rotate(-45deg)
+    scale(1.06);
+}
 
 /* ---- state: amplop terbuka ---- */
 .amplop--terbuka .amplop__flap{
@@ -125,7 +184,7 @@ button{ font-family:inherit; }
   z-index:1;
 }
 .amplop--terbuka .amplop__segel{
-  opacity:0; transform:translate(-50%,-50%) scale(.4); pointer-events:none;
+  opacity:0; transform:translate(-50%,-50%) rotate(-45deg) scale(.4); pointer-events:none;
 }
 .amplop--terbuka .amplop__surat{
   transform:translateX(-50%) translateY(-210px) scale(1.04);
@@ -1178,7 +1237,7 @@ body:not(.undangan-terbuka) .kolase-template {
 @keyframes sealPulse {
   0%,
   100% {
-    transform: translate(-50%, -50%) scale(1);
+    transform: translate(-50%, -50%) rotate(-45deg) scale(1);
 
     box-shadow:
       0 8px 16px rgba(72, 31, 36, 0.28),
@@ -1186,7 +1245,7 @@ body:not(.undangan-terbuka) .kolase-template {
   }
 
   50% {
-    transform: translate(-50%, -50%) scale(1.06);
+    transform: translate(-50%, -50%) rotate(-45deg) scale(1.06);
 
     box-shadow:
       0 12px 22px rgba(72, 31, 36, 0.22),
