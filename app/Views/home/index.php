@@ -46,8 +46,17 @@ $kataKata = $config['kata_kata'] ?? [];
         class="amplop-wrap<?= $sudahDibuka ? ' amplop-wrap--selesai' : '' ?>"
         id="amplopWrap"
     >
-        
+     <div class="front-decoration" aria-hidden="true">
+    <span class="front-decoration__item front-decoration__item--1">♡</span>
+    <span class="front-decoration__item front-decoration__item--2">✦</span>
+    <span class="front-decoration__item front-decoration__item--3">♥</span>
+    <span class="front-decoration__item front-decoration__item--4">✧</span>
+    </div>
         <div class="amplop" id="amplop">
+
+        <p class="amplop-hint">
+                 Tap the seal to open
+        </p>
 
 
             <div class="amplop__badan"></div>

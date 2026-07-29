@@ -976,3 +976,309 @@ body:not(.undangan-terbuka) .kolase-template {
     transform: none;
   }
 }
+/* =========================================================
+   INTERAKSI HALAMAN DEPAN AMPLOP
+========================================================= */
+
+.amplop-wrap {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+}
+
+/* Cahaya lembut di belakang amplop */
+.amplop-wrap::before {
+  content: "";
+
+  position: absolute;
+  left: 50%;
+  top: 50%;
+
+  width: min(580px, 88vw);
+  aspect-ratio: 1;
+
+  border-radius: 50%;
+
+  background:
+    radial-gradient(
+      circle,
+      rgba(255, 248, 238, 0.46) 0%,
+      rgba(255, 248, 238, 0.16) 38%,
+      transparent 70%
+    );
+
+  transform: translate(-50%, -50%);
+  animation: frontGlow 4s ease-in-out infinite;
+
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Tekstur background bergerak lembut */
+.amplop-wrap::after {
+  content: "";
+
+  position: absolute;
+  inset: 0;
+
+  background:
+    radial-gradient(
+      circle at 15% 25%,
+      rgba(255, 255, 255, 0.13),
+      transparent 18%
+    ),
+    radial-gradient(
+      circle at 85% 70%,
+      rgba(255, 255, 255, 0.12),
+      transparent 20%
+    );
+
+  animation: frontBackgroundMove 9s ease-in-out infinite alternate;
+
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Amplop tetap di atas dekorasi */
+.amplop {
+  position: relative;
+  z-index: 3;
+
+  cursor: pointer;
+  transform-origin: center;
+
+  transition:
+    transform 0.35s cubic-bezier(.2, .8, .2, 1),
+    filter 0.35s ease;
+}
+
+/* Desktop */
+.amplop:hover {
+  transform: translateY(-8px) scale(1.025);
+
+  filter:
+    drop-shadow(
+      0 22px 22px rgba(88, 44, 56, 0.22)
+    );
+}
+
+/* Saat ditekan di HP */
+.amplop:active {
+  transform: translateY(-2px) scale(0.98);
+}
+
+/* Segel berdenyut */
+.amplop__segel {
+  animation: sealPulse 2s ease-in-out infinite;
+}
+
+/* Tulisan petunjuk */
+.amplop-hint {
+  position: relative;
+  z-index: 4;
+
+  margin: 26px 0 0;
+
+  color: rgba(124, 51, 51, 0.82);
+
+  font-family: var(--font-ui);
+  font-size: 13px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  text-align: center;
+
+  animation: hintFloat 2.4s ease-in-out infinite;
+
+  pointer-events: none;
+}
+
+/* Dekorasi melayang */
+.front-decoration {
+  position: absolute;
+  inset: 0;
+
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.front-decoration__item {
+  position: absolute;
+
+  color: rgba(255, 250, 244, 0.88);
+  font-family: Georgia, serif;
+
+  text-shadow:
+    0 4px 12px rgba(124, 51, 51, 0.14);
+
+  animation:
+    frontFloat 5s ease-in-out infinite,
+    frontFade 4s ease-in-out infinite;
+}
+
+.front-decoration__item--1 {
+  left: 13%;
+  top: 32%;
+
+  font-size: clamp(34px, 4vw, 58px);
+
+  animation-delay: 0s;
+}
+
+.front-decoration__item--2 {
+  right: 16%;
+  top: 30%;
+
+  font-size: clamp(28px, 3vw, 48px);
+
+  animation-delay: 0.7s;
+}
+
+.front-decoration__item--3 {
+  left: 25%;
+  bottom: 20%;
+
+  font-size: clamp(18px, 2vw, 28px);
+
+  animation-delay: 1.3s;
+}
+
+.front-decoration__item--4 {
+  right: 26%;
+  bottom: 18%;
+
+  font-size: clamp(24px, 2.6vw, 38px);
+
+  animation-delay: 1.8s;
+}
+
+@keyframes frontGlow {
+  0%,
+  100% {
+    opacity: 0.7;
+    scale: 0.94;
+  }
+
+  50% {
+    opacity: 1;
+    scale: 1.05;
+  }
+}
+
+@keyframes frontBackgroundMove {
+  from {
+    transform: translate3d(-10px, -5px, 0);
+  }
+
+  to {
+    transform: translate3d(12px, 8px, 0);
+  }
+}
+
+@keyframes sealPulse {
+  0%,
+  100% {
+    transform: scale(1);
+
+    box-shadow:
+      0 8px 16px rgba(72, 31, 36, 0.28),
+      0 0 0 0 rgba(124, 51, 51, 0.26);
+  }
+
+  50% {
+    transform: scale(1.06);
+
+    box-shadow:
+      0 12px 22px rgba(72, 31, 36, 0.22),
+      0 0 0 14px rgba(124, 51, 51, 0);
+  }
+}
+
+@keyframes hintFloat {
+  0%,
+  100% {
+    opacity: 0.65;
+    transform: translateY(0);
+  }
+
+  50% {
+    opacity: 1;
+    transform: translateY(-5px);
+  }
+}
+
+@keyframes frontFloat {
+  0%,
+  100% {
+    transform: translateY(0) rotate(-5deg);
+  }
+
+  50% {
+    transform: translateY(-16px) rotate(5deg);
+  }
+}
+
+@keyframes frontFade {
+  0%,
+  100% {
+    opacity: 0.45;
+  }
+
+  50% {
+    opacity: 1;
+  }
+}
+
+/* Setelah amplop selesai dibuka */
+.amplop-wrap--selesai .front-decoration,
+.amplop-wrap--selesai .amplop-hint {
+  opacity: 0;
+  visibility: hidden;
+
+  transition:
+    opacity 0.4s ease,
+    visibility 0.4s ease;
+}
+
+/* Mobile */
+@media (max-width: 600px) {
+  .amplop-hint {
+    margin-top: 20px;
+    font-size: 10px;
+    letter-spacing: 0.12em;
+  }
+
+  .front-decoration__item--1 {
+    left: 5%;
+    top: 24%;
+  }
+
+  .front-decoration__item--2 {
+    right: 6%;
+    top: 25%;
+  }
+
+  .front-decoration__item--3 {
+    left: 12%;
+    bottom: 17%;
+  }
+
+  .front-decoration__item--4 {
+    right: 12%;
+    bottom: 16%;
+  }
+
+  .amplop:hover {
+    transform: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .amplop-wrap::before,
+  .amplop-wrap::after,
+  .amplop__segel,
+  .amplop-hint,
+  .front-decoration__item {
+    animation: none;
+  }
+}
