@@ -54,7 +54,7 @@ $kataKata = $config['kata_kata'] ?? [];
 
             <div class="amplop__surat">
                 <p class="amplop__surat-eyebrow">
-                    untuk
+                    For
                 </p>
 
                 <p class="amplop__surat-nama">
