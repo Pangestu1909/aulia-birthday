@@ -110,8 +110,8 @@ button{ font-family:inherit; }
   top:36%;
   left:50%;
 
-  width:56px;
-  height:56px;
+  width:42px;
+  height:42px;
 
   transform:
     translate(-50%,-50%)
@@ -142,8 +142,8 @@ button{ font-family:inherit; }
 
   position:absolute;
 
-  width:56px;
-  height:56px;
+  width:42px;
+  height:42px;
 
   border-radius:50%;
   background:var(--maroon);
@@ -152,20 +152,20 @@ button{ font-family:inherit; }
 }
 
 .amplop__segel::before{
-  top:-28px;
+  top:-21px;
   left:0;
 }
 
 .amplop__segel::after{
   top:0;
-  left:28px;
+  left:21px;
 }
 .amplop__segel span{
   position:relative;
   z-index:2;
 
   font-family:var(--font-script);
-  font-size:16px;
+  font-size:20px;
   color:#F3E4CC;
   letter-spacing:.02em;
 
