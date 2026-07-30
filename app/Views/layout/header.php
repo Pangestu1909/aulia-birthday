@@ -10,4 +10,6 @@
 <link rel="stylesheet" href="/css/theme.css">
 <link rel="stylesheet" href="/css/style.css?v=121">
 <link rel="icon" type="image/png" href="/img/birthday.png">
+</head>
+<body>
 <body>

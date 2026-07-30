@@ -82,6 +82,8 @@ $kataKata = $config['kata_kata'] ?? [];
     <span>Open</span>
 </button>
 
+        </div>
+    </section>
     <!-- Musik background -->
     <audio
         id="backgroundMusic"
@@ -252,15 +254,21 @@ $kataKata = $config['kata_kata'] ?? [];
 
         <?php endforeach; ?>
 
+    </div>
 
-        <?php endif; ?>
+</div>
 
+</section>
+
+<?php endif; ?>
+
+    </div>
 </div>
 
 <?php if ($sudahDibuka): ?>
 
-    <script>
-        document.body.classList.add('undangan-terbuka');
-    </script>
+<script>
+    document.body.classList.add('undangan-terbuka');
+</script>
 
 <?php endif; ?>
