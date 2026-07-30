@@ -105,95 +105,89 @@ button{ font-family:inherit; }
 }
 
 /* segel lilin / tombol buka */
-.amplop__segel{
-  position:absolute;
-  top:36%;
-  left:50%;
+.amplop__segel {
+  position: absolute;
+  top: 36%;
+  left: 50%;
 
-  width:42px;
-  height:42px;
+  width: 68px;
+  height: 62px;
+  padding: 0;
 
-  transform:
-    translate(-50%,-50%)
-    rotate(-45deg);
+  border: 0;
+  border-radius: 0;
+  background: transparent;
 
-  border:none;
-  border-radius:8px 0 8px 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
-  background:var(--maroon);
+  cursor: pointer;
+  z-index: 5;
 
-  box-shadow:
-    0 4px 8px rgba(0,0,0,0.35);
-
-  display:flex;
-  align-items:center;
-  justify-content:center;
-
-  z-index:5;
+  transform: translate(-50%, -50%);
+  transform-origin: center;
 
   transition:
-    transform .5s ease,
-    opacity .5s ease;
+    opacity 0.45s ease,
+    transform 0.3s ease;
+
+  animation: sealPulse 2s ease-in-out infinite;
 }
 
+/* Matikan bentuk hati lama */
 .amplop__segel::before,
-.amplop__segel::after{
-  content:"";
-
-  position:absolute;
-
-  width:30px;
-  height:50px;
-
-  border-radius:51%;
-  background:var(--maroon);
-
-  z-index:-1;
+.amplop__segel::after {
+  content: none;
+  display: none;
 }
 
-.amplop__segel::before{
-  top:-21px;
-  left:0;
-}
-
-.amplop__segel::after{
-  top:0;
-  left:21px;
-}
-.amplop__segel span {
+.amplop__segel-heart {
   position: absolute;
-  top: 39%;
-  left: 50%;
+  inset: 0;
+
+  width: 100%;
+  height: 100%;
+
+  overflow: visible;
+
+  filter:
+    drop-shadow(0 5px 6px rgba(60, 24, 30, 0.32));
+}
+
+.amplop__segel-heart path {
+  fill: var(--maroon);
+}
+
+/* Tulisan benar-benar berada di tengah */
+.amplop__segel span {
+  position: relative;
+  top: -1px;
   z-index: 2;
 
-   font-family: var(--font-script);
-  font-size: 13px;
+  margin: 0;
+
+  color: #f3e4cc;
+  font-family: var(--font-script);
+  font-size: 15px;
   font-weight: 500;
   line-height: 1;
-  color: #F3E4CC;
   letter-spacing: 0;
-  white-space: nowrap;
-  text-decoration: none;
 
-  transform:
-  translate(-50%, -50%)
-  rotate(-45deg)
-  scaleX(1.12)
-  scaleY(0.86);
+  transform: none;
+  white-space: nowrap;
 
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
-  backface-visibility: hidden;
 
-  white-space: nowrap;
+  pointer-events: none;
 }
+
 .amplop__segel:hover {
   transform:
     translate(-50%, -50%)
-    rotate(-45deg)
-    scaleX(1.18)
-    scaleY(0.91);
+    scale(1.06);
 }
 
 /* ---- state: amplop terbuka ---- */
@@ -201,9 +195,13 @@ button{ font-family:inherit; }
   transform:rotateX(-165deg);
   z-index:1;
 }
+
 .amplop--terbuka .amplop__segel{
-  opacity:0; transform:translate(-50%,-50%) rotate(-45deg) scale(.4); pointer-events:none;
+  opacity:0;
+  transform:translate(-50%,-50%) scale(.4);
+  pointer-events:none;
 }
+
 .amplop--terbuka .amplop__surat{
   transform:translateX(-50%) translateY(-210px) scale(1.04);
   box-shadow:0 26px 40px rgba(54,43,34,0.30);
@@ -1257,9 +1255,7 @@ body:not(.undangan-terbuka) .kolase-template {
   100% {
     transform:
       translate(-50%, -50%)
-      rotate(-45deg)
-      scaleX(1.12)
-      scaleY(0.86);
+      scale(1);
 
     box-shadow:
       0 8px 16px rgba(72, 31, 36, 0.28),
@@ -1269,9 +1265,7 @@ body:not(.undangan-terbuka) .kolase-template {
   50% {
     transform:
       translate(-50%, -50%)
-      rotate(-45deg)
-      scaleX(1.18)
-      scaleY(0.91);
+      scale(1.05);
 
     box-shadow:
       0 12px 22px rgba(72, 31, 36, 0.22),
