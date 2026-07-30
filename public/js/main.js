@@ -123,12 +123,13 @@ document.addEventListener('DOMContentLoaded', function () {
           isiUndangan.querySelector('.surat');
 
           if (suratUtama) {
-    suratUtama.classList.remove('surat-muncul');
+  suratUtama.classList.add('is-visible');
+  suratUtama.classList.remove('surat-muncul');
 
-    window.requestAnimationFrame(function () {
-      suratUtama.classList.add('surat-muncul');
-    });
-  }
+  window.requestAnimationFrame(function () {
+    suratUtama.classList.add('surat-muncul');
+  });
+}
 
         var targetScroll =
           suratUtama || isiUndangan;
