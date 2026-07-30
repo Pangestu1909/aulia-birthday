@@ -110,36 +110,27 @@ button{ font-family:inherit; }
   top: 36%;
   left: 50%;
 
-  width: 68px;
-  height: 62px;
+  width: 58px;
+  height: 58px;
   padding: 0;
 
-  border: 0;
-  border-radius: 0;
-  background: transparent;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  border: none;
+  background-color: transparent;
+  background-image: url('/img/hearts.png');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
 
   cursor: pointer;
   z-index: 5;
 
   transform: translate(-50%, -50%);
-  transform-origin: center;
 
   transition:
-    opacity 0.45s ease,
-    transform 0.3s ease;
+    transform 0.3s ease,
+    opacity 0.5s ease;
 
   animation: sealPulse 2s ease-in-out infinite;
-}
-
-/* Matikan bentuk hati lama */
-.amplop__segel::before,
-.amplop__segel::after {
-  content: none;
-  display: none;
 }
 
 .amplop__segel-heart {
@@ -161,29 +152,20 @@ button{ font-family:inherit; }
 
 /* Tulisan benar-benar berada di tengah */
 .amplop__segel span {
-  position: relative;
-  top: -1px;
-  z-index: 2;
-
-  margin: 0;
+  position: absolute;
+  top: 46%;
+  left: 50%;
 
   color: #f3e4cc;
   font-family: var(--font-script);
-  font-size: 15px;
-  font-weight: 500;
+  font-size: 13px;
   line-height: 1;
-  letter-spacing: 0;
-
-  transform: none;
   white-space: nowrap;
 
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-rendering: optimizeLegibility;
+  transform: translate(-50%, -50%);
 
   pointer-events: none;
 }
-
 .amplop__segel:hover {
   transform:
     translate(-50%, -50%)

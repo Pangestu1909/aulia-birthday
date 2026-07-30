@@ -73,18 +73,14 @@ $kataKata = $config['kata_kata'] ?? [];
 
             <div class="amplop__saku"></div>
             <div class="amplop__flap"></div>
-
-            <button
-                class="amplop__segel"
-                id="segelBtn"
-                type="button"
-                aria-label="Buka amplop undangan"
-            >
-                <span>Open</span>
-            </button>
-
-        </div>
-    </section>
+<button
+    class="amplop__segel"
+    id="segelBtn"
+    type="button"
+    aria-label="Buka amplop undangan"
+>
+    <span>Open</span>
+</button>
 
     <!-- Musik background -->
     <audio
