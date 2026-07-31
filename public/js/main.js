@@ -80,6 +80,7 @@ document.addEventListener('DOMContentLoaded', function () {
      * Setelah galeri muncul, slider kata-kata
      * muncul 1,5 detik kemudian.
      */
+
     amatiSection(galeriSection, function () {
       window.setTimeout(function () {
         if (kataSlider) {
@@ -122,14 +123,14 @@ document.addEventListener('DOMContentLoaded', function () {
         var suratUtama =
           isiUndangan.querySelector('.surat');
 
-          if (suratUtama) {
-  suratUtama.classList.add('is-visible');
-  suratUtama.classList.remove('surat-muncul');
+        if (suratUtama) {
+          suratUtama.classList.add('is-visible');
+          suratUtama.classList.remove('surat-muncul');
 
-  window.requestAnimationFrame(function () {
-    suratUtama.classList.add('surat-muncul');
-  });
-}
+          window.requestAnimationFrame(function () {
+            suratUtama.classList.add('surat-muncul');
+          });
+        }
 
         var targetScroll =
           suratUtama || isiUndangan;
@@ -221,9 +222,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
   var kataIndex = 0;
   var kataInterval = null;
-  
-  var durasiSliderKata = 1800;
-  var durasiHoverKata = 700;
 
   function tampilkanKata(index) {
     if (!kataSlides.length) {
@@ -263,7 +261,6 @@ document.addEventListener('DOMContentLoaded', function () {
     }, 4500);
   }
 
-
   /*
    * Navigasi dots
    */
@@ -293,137 +290,144 @@ document.addEventListener('DOMContentLoaded', function () {
    */
 
   if (kataSlider && kataSlides.length > 1) {
-  mulaiSliderKata();
+    mulaiSliderKata();
 
     /*
-   * =========================
-   * ANIMASI FOTO SAAT SCROLL
-   * =========================
-   */
-
-  var semuaFotoGaleri =
-    document.querySelectorAll('.galeri__item');
-
-  if (semuaFotoGaleri.length) {
-    document.body.classList.add('animasi-foto-aktif');
-
-    /*
-     * Browser lama yang tidak mendukung IntersectionObserver
-     * tetap menampilkan semua foto.
+     * =========================
+     * ANIMASI FOTO SAAT SCROLL
+     * =========================
      */
-    if (!('IntersectionObserver' in window)) {
-      semuaFotoGaleri.forEach(function (foto) {
-        foto.classList.add('foto-sudah-muncul');
-      });
-    } else {
-      var observerFoto = new IntersectionObserver(
-        function (entries, observer) {
-          entries.forEach(function (entry) {
-            if (!entry.isIntersecting) {
-              return;
-            }
 
-            entry.target.classList.add(
-              'foto-sudah-muncul'
-            );
+    var semuaFotoGaleri =
+      document.querySelectorAll('.galeri__item');
 
-            /*
-             * Setelah muncul sekali, foto tidak diamati lagi.
-             * Ini mencegah animasi berulang ketika scroll naik-turun.
-             */
-            observer.unobserve(entry.target);
-          });
-        },
-        {
-          threshold: 0.18,
-          rootMargin: '0px 0px -8% 0px'
-        }
-      );
+    if (semuaFotoGaleri.length) {
+      document.body.classList.add('animasi-foto-aktif');
 
-      semuaFotoGaleri.forEach(function (foto, index) {
-        /*
-         * Dalam setiap baris:
-         * foto kiri tampil lebih dulu,
-         * foto kanan menyusul 140 ms.
-         */
-        var delayFoto =
-          index % 2 === 0 ? 0 : 150;
+      /*
+       * Browser lama yang tidak mendukung IntersectionObserver
+       * tetap menampilkan semua foto.
+       */
 
-        foto.style.setProperty(
-          '--foto-delay',
-          delayFoto + 'ms'
+      if (!('IntersectionObserver' in window)) {
+        semuaFotoGaleri.forEach(function (foto) {
+          foto.classList.add('foto-sudah-muncul');
+        });
+      } else {
+        var observerFoto = new IntersectionObserver(
+          function (entries, observer) {
+            entries.forEach(function (entry) {
+              if (!entry.isIntersecting) {
+                return;
+              }
+
+              entry.target.classList.add(
+                'foto-sudah-muncul'
+              );
+
+              /*
+               * Setelah muncul sekali, foto tidak diamati lagi.
+               * Ini mencegah animasi berulang ketika scroll naik-turun.
+               */
+
+              observer.unobserve(entry.target);
+            });
+          },
+          {
+            threshold: 0.18,
+            rootMargin: '0px 0px -8% 0px'
+          }
         );
 
-        observerFoto.observe(foto);
-      });
+        semuaFotoGaleri.forEach(function (foto, index) {
+          /*
+           * Dalam setiap baris:
+           * foto kiri tampil lebih dulu,
+           * foto kanan menyusul 150 ms.
+           */
+
+          var delayFoto =
+            index % 2 === 0 ? 0 : 150;
+
+          foto.style.setProperty(
+            '--foto-delay',
+            delayFoto + 'ms'
+          );
+
+          observerFoto.observe(foto);
+        });
+      }
+    }
+
+    var kataViewport =
+      kataSlider.querySelector('.kata-slider__viewport');
+
+    if (kataViewport) {
+      kataViewport.addEventListener(
+        'mouseenter',
+        function () {
+          tampilkanKata(kataIndex + 1);
+          mulaiSliderKata();
+        }
+      );
     }
   }
 
-  var kataViewport =
-    kataSlider.querySelector('.kata-slider__viewport');
+  /*
+   * =========================
+   * ANIMASI SLIDER SAAT SCROLL
+   * =========================
+   */
 
-  if (kataViewport) {
-    kataViewport.addEventListener(
-      'mouseenter',
-      function () {
-        tampilkanKata(kataIndex + 1);
-        mulaiSliderKata();
-      }
-    );
-  }
-}
-/*
- * =========================
- * ANIMASI SLIDER SAAT SCROLL
- * =========================
- */
+  if (kataSlider) {
+    if ('IntersectionObserver' in window) {
+      var observerKataSlider =
+        new IntersectionObserver(
+          function (entries, observer) {
+            entries.forEach(function (entry) {
+              if (!entry.isIntersecting) {
+                return;
+              }
 
-if (kataSlider) {
-  if ('IntersectionObserver' in window) {
-    var observerKataSlider =
-      new IntersectionObserver(
-        function (entries, observer) {
-          entries.forEach(function (entry) {
-            if (!entry.isIntersecting) {
-              return;
-            }
+              /*
+               * Pastikan slider terlihat,
+               * lalu jalankan animasinya.
+               */
 
-            /*
-             * Pastikan slider terlihat,
-             * lalu jalankan animasinya.
-             */
-            entry.target.classList.add('is-visible');
-            entry.target.classList.add(
-              'kata-slider--muncul'
-            );
+              entry.target.classList.add('is-visible');
+              entry.target.classList.add(
+                'kata-slider--muncul'
+              );
 
-            /*
-             * Saat pertama terlihat,
-             * mulai kembali dari kata pertama.
-             */
-            window.clearInterval(kataInterval);
+              /*
+               * Saat pertama terlihat,
+               * mulai kembali dari kata pertama.
+               */
 
-            tampilkanKata(0);
-            mulaiSliderKata();
+              window.clearInterval(kataInterval);
 
-            /*
-             * Animasi hanya terjadi sekali.
-             */
-            observer.unobserve(entry.target);
-          });
-        },
-        {
-          threshold: 0.25,
-          rootMargin: '0px 0px -10% 0px'
-        }
+              tampilkanKata(0);
+              mulaiSliderKata();
+
+              /*
+               * Animasi hanya terjadi sekali.
+               */
+
+              observer.unobserve(entry.target);
+            });
+          },
+          {
+            threshold: 0.25,
+            rootMargin: '0px 0px -10% 0px'
+          }
+        );
+
+      observerKataSlider.observe(kataSlider);
+    } else {
+      kataSlider.classList.add('is-visible');
+      kataSlider.classList.add(
+        'kata-slider--muncul'
       );
-
-    observerKataSlider.observe(kataSlider);
-  } else {
-    kataSlider.classList.add('is-visible');
-    kataSlider.classList.add(
-      'kata-slider--muncul'
-    );
+    }
   }
-}
 });
