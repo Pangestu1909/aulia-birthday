@@ -36,7 +36,6 @@ class HomeController extends Controller
                 'Cache-Control: no-store, no-cache, must-revalidate, max-age=0'
             );
 
-            echo 'QR ini baru dapat dibuka pada 2 Agustus 2026 pukul 00.00 WIB.';
 
             return;
         }

@@ -1,10 +1,19 @@
-<section class="locked-page">
-    <div class="locked-card">
-        <h1>Belum dapat dibuka</h1>
-
-        <p>
-            QR ini baru dapat digunakan pada
-            <strong>2 Agustus 2026 pukul 00.00 WIB</strong>.
-        </p>
+<div class="locked-page">
+    <div class="locked-icon" aria-label="Undangan terkunci">
+        🔒
     </div>
-</section>
+</div>
+
+<style>
+.locked-page {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.locked-icon {
+    font-size: 72px;
+    line-height: 1;
+}
+</style>
