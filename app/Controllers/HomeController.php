@@ -36,6 +36,8 @@ class HomeController extends Controller
                 'Cache-Control: no-store, no-cache, must-revalidate, max-age=0'
             );
 
+                $this->render('home/locked');
+
 
             return;
         }
