@@ -8,7 +8,7 @@ use App\Models\UcapanModel;
 class HomeController extends Controller
 {
     private UcapanModel $ucapanModel;
-             
+
     public function __construct()
     {
         $this->ucapanModel = new UcapanModel();
@@ -19,15 +19,38 @@ class HomeController extends Controller
      */
     public function index(): void
     {
-        $config  = require __DIR__ . '/../config.php';
-        $ucapan  = $this->ucapanModel->getAll();
-        $flash   = $_SESSION['flash'] ?? null;
+        $zonaWaktu = new \DateTimeZone('Asia/Jakarta');
+
+        $waktuSekarang = new \DateTimeImmutable(
+            'now',
+            $zonaWaktu
+        );
+
+        $waktuDibuka = new \DateTimeImmutable(
+            '2026-08-02 00:00:00',
+            $zonaWaktu
+        );
+
+        if ($waktuSekarang < $waktuDibuka) {
+            header(
+                'Cache-Control: no-store, no-cache, must-revalidate, max-age=0'
+            );
+
+            echo 'QR ini baru dapat dibuka pada 2 Agustus 2026 pukul 00.00 WIB.';
+
+            return;
+        }
+
+        $config = require __DIR__ . '/../config.php';
+        $ucapan = $this->ucapanModel->getAll();
+        $flash = $_SESSION['flash'] ?? null;
+
         unset($_SESSION['flash']);
 
         $this->render('home/index', [
             'config' => $config,
             'ucapan' => $ucapan,
-            'flash'  => $flash,
+            'flash' => $flash,
         ]);
     }
 
@@ -36,21 +59,39 @@ class HomeController extends Controller
      */
     public function kirimUcapan(): void
     {
-        $nama  = trim($_POST['nama'] ?? '');
+        $nama = trim($_POST['nama'] ?? '');
         $pesan = trim($_POST['pesan'] ?? '');
 
         if ($nama === '' || $pesan === '') {
-            $_SESSION['flash'] = ['type' => 'error', 'text' => 'Nama dan ucapan tidak boleh kosong ya.'];
+            $_SESSION['flash'] = [
+                'type' => 'error',
+                'text' => 'Nama dan ucapan tidak boleh kosong ya.',
+            ];
+
             $this->redirect('/#tinggalkan-ucapan');
+
             return;
         }
 
-        $nama  = htmlspecialchars($nama, ENT_QUOTES, 'UTF-8');
-        $pesan = htmlspecialchars($pesan, ENT_QUOTES, 'UTF-8');
+        $nama = htmlspecialchars(
+            $nama,
+            ENT_QUOTES,
+            'UTF-8'
+        );
+
+        $pesan = htmlspecialchars(
+            $pesan,
+            ENT_QUOTES,
+            'UTF-8'
+        );
 
         $this->ucapanModel->add($nama, $pesan);
 
-        $_SESSION['flash'] = ['type' => 'success', 'text' => 'Makasih ucapannya, ' . $nama . '!'];
+        $_SESSION['flash'] = [
+            'type' => 'success',
+            'text' => 'Makasih ucapannya, ' . $nama . '!',
+        ];
+
         $this->redirect('/#dinding-ucapan');
     }
 }
